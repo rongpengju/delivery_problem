@@ -1,0 +1,6 @@
+calculate:
+  basic_price: 18
+  over_price: 5
+  basic_weight: 1
+  insurance_rate: 1
+database:
