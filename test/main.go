@@ -2,14 +2,22 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"unsafe"
 )
 
-func main() {
-	fmt.Println(Round(1.01, 0))
+type Database struct {
+	Host     string
+	User     string
+	Password string
+	Port     int
 }
 
-func Round(val float64, precision int) float64 {
-	p := math.Pow10(precision)
-	return math.Floor(val*p+0.5) / p
+func main() {
+	d := Database{
+		Host:     "",
+		User:     "",
+		Password: "",
+		Port:     0,
+	}
+	fmt.Println(unsafe.Sizeof(d))
 }
