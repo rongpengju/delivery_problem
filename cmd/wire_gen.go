@@ -8,6 +8,7 @@ package main
 
 import (
 	"github.com/rongpengju/delivery_problem/internal/biz"
+	"github.com/rongpengju/delivery_problem/internal/data"
 	"github.com/rongpengju/delivery_problem/internal/pkg/etc"
 )
 
@@ -19,7 +20,11 @@ func initEntrypoint() (*Entrypoint, error) {
 		return nil, err
 	}
 	courier := biz.NewCourier(config)
-	entrypoint := NewEntrypoint(config, courier)
+	database, err := data.NewDatabase()
+	if err != nil {
+		return nil, err
+	}
+	entrypoint := NewEntrypoint(config, courier, database)
 	return entrypoint, nil
 }
 
@@ -28,11 +33,13 @@ func initEntrypoint() (*Entrypoint, error) {
 type Entrypoint struct {
 	Config  *etc.Config
 	Courier *biz.Courier
+	DB      *data.Database
 }
 
-func NewEntrypoint(config *etc.Config, courier *biz.Courier) *Entrypoint {
+func NewEntrypoint(config *etc.Config, courier *biz.Courier, db *data.Database) *Entrypoint {
 	return &Entrypoint{
 		Config:  config,
 		Courier: courier,
+		DB:      db,
 	}
 }
