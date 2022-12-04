@@ -2,11 +2,12 @@ package biz
 
 import (
 	"fmt"
-	"github.com/rongpengju/delivery_problem/internal/pkg/etc"
 	"math"
 
 	"github.com/google/wire"
 	"github.com/shopspring/decimal"
+
+	"github.com/rongpengju/delivery_problem/internal/pkg/etc"
 )
 
 var ProviderSet = wire.NewSet(
